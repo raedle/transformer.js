@@ -51,10 +51,16 @@ module.exports = {
             include: /\.min\.js$/,
             minimize: true,
             sourceMap: true
-        }),
-        //     new HtmlWebpackPlugin({
-        //         title: `${pkg.name} v${pkg.version}`,
-        //     }),
+        })//,
+        // new HtmlWebpackPlugin({
+        //     title: `${pkg.name} v${pkg.version}`,
+        //     inject: 'head',
+        //     filename: 'test.html'
+        // }),
+        // new HtmlWebpackPlugin({
+        //     title: `${pkg.name} v${pkg.version}`,
+        //     filename: 'test1.html'
+        // })
         //     new webpack.NamedModulesPlugin(),
         //     new webpack.HotModuleReplacementPlugin()
     ],
