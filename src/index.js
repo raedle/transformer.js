@@ -9,22 +9,6 @@ import Transformer from './transformer';
 import { bind } from './extensions/bind';
 import { hammerize } from './extensions/hammerize';
 
-// Object.assign(Transformer, {
-
-//   // utils
-//   Point,
-//   Matrix,
-
-//   // transforms
-//   TranslateTransform,
-//   RotateTransform,
-//   ScaleTransform,
-//   TransformGroup,
-
-//   // extensions
-//   hammerize
-// });
-
 export {
     // utils
     Point,
@@ -39,4 +23,4 @@ export {
     // extensions
     bind,
     hammerize
-}
+};

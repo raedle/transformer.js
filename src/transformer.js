@@ -51,7 +51,6 @@ export default class Transformer {
 
         let matrix = this.getTransformMatrix();
 
-        // this._transformOrigin = new TransformOrigin(element);
         this._scaleTransform = ScaleTransform.from(matrix);
         this._rotateTransform = RotateTransform.from(matrix);
         this._translateTransform = TranslateTransform.from(matrix);
@@ -63,9 +62,6 @@ export default class Transformer {
 
         this._transforms = transformGroup;
 
-        // Listen for Webstrates updates.
-        // this.listenForUpdates();
-
         if (debug) {
 
             let visualTransformOrigin = this.element.querySelector(':scope > .transform-origin-point');
@@ -74,18 +70,10 @@ export default class Transformer {
                 // Create visual transform origin
                 visualTransformOrigin = document.createElement("transient");
                 visualTransformOrigin.setAttribute("class", "transform-origin-point");
-                element.appendChild(visualTransformOrigin);
-            }
 
-            // const _transformOriginSet = this.transformOrigin.set;
-            // this.transformOrigin.set = function(x, y) {
-            //     visualTransformOrigin.style.zIndex = "99999";
-            //     visualTransformOrigin.style.position = `absolute`;
-            //     visualTransformOrigin.style.left = `${x * 100}%`;
-            //     visualTransformOrigin.style.top = `${y * 100}%`;
-            //     visualTransformOrigin.style.transform = `translate(-50%, -50%)`;
-            //     _transformOriginSet.apply(this, arguments);
-            // }
+                // append debug element as first child of element
+                element.insertBefore(visualTransformOrigin, element.firstElementChild);
+            }
         }
     }
 
