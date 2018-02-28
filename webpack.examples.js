@@ -11,6 +11,50 @@ const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plug
 
 let configs = [];
 
+const addIndexConfig = () => {
+    let example = 'index';
+
+    let name = example;
+
+    let config = {
+        entry: `./examples/${example}/main.js`,
+        module: {
+            rules: [
+                {
+                    test: /\.handlebars$/,
+                    loader: "handlebars-loader"
+                },
+                {
+                    test: /\.css/,
+                    use: ExtractTextPlugin.extract({
+                        fallback: "style-loader",
+                        use: "css-loader"
+                    })
+                }
+            ],
+        },
+        plugins: [
+            new HtmlWebpackPlugin({
+                title: `Transformer.js`,
+                template: `handlebars-loader!./examples/${example}/index.hbs`,
+                filename: `index.html`,
+                inject: 'head'
+            }),
+            new HtmlWebpackIncludeAssetsPlugin({
+                assets: ['transformer.min.js'],
+                append: false
+            }),
+            new ExtractTextPlugin(`${name}.css`)
+        ],
+        output: {
+            path: path.resolve(__dirname, `dist`),
+            filename: `${name}.js`
+        }
+    };
+    configs.push(config);
+};
+addIndexConfig();
+
 // get all handlebar files '.hbs'
 let examples = fs.readdirSync('./examples').filter((folder) => folder.endsWith('-example'));
 examples.forEach((example) => {
@@ -41,13 +85,13 @@ examples.forEach((example) => {
                 inject: 'head'
             }),
             new HtmlWebpackIncludeAssetsPlugin({
-                assets: ['../../transformer.min.js'],
+                assets: ['../transformer.min.js'],
                 append: false
             }),
             new ExtractTextPlugin(`${name}.css`)
         ],
         output: {
-            path: path.resolve(__dirname, `dist/examples/${name}`),
+            path: path.resolve(__dirname, `dist/${name}`),
             filename: `${name}.js`
         }
     };

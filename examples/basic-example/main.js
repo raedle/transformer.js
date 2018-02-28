@@ -137,21 +137,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 centerPoint = adjustCenterPoint(centerPoint);
 
                 if (event.ctrlKey) {
-                    const newScale = scaleTransform.x * manipulationFactor;
+                    const deltaAngle = -(manipulationFactor - 1) * 50;
+                    const angle = (rotateTransform.angle - deltaAngle) % 360;
 
-                    scaleTransform.set(newScale, newScale);
-                    scaleTransform.centerPoint.x = centerPoint.x;
-                    scaleTransform.centerPoint.y = centerPoint.y;
+                    rotateTransform.set(angle);
+                    rotateTransform.centerPoint.x = centerPoint.x;
+                    rotateTransform.centerPoint.y = centerPoint.y;
                     transformer.reapplyTransforms();
                     return;
                 }
 
-                const deltaAngle = -(manipulationFactor - 1) * 50;
-                const angle = (rotateTransform.angle - deltaAngle) % 360;
+                const newScale = scaleTransform.x * manipulationFactor;
 
-                rotateTransform.set(angle);
-                rotateTransform.centerPoint.x = centerPoint.x;
-                rotateTransform.centerPoint.y = centerPoint.y;
+                scaleTransform.set(newScale, newScale);
+                scaleTransform.centerPoint.x = centerPoint.x;
+                scaleTransform.centerPoint.y = centerPoint.y;
                 transformer.reapplyTransforms();
             }, false);
         });
