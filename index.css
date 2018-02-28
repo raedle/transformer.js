@@ -81,9 +81,10 @@ body {
 body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
-iframe {
+.example iframe {
     border: 0;
     width: 1200px;
     height: 600px;
