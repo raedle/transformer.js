@@ -84,6 +84,7 @@ body {
 }
 
 iframe {
-    width: 100%;
-    min-height: 600px;
+    border: 0;
+    width: 1200px;
+    height: 600px;
 }
