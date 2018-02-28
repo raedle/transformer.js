@@ -78,15 +78,12 @@ body {
     background-color: green;
     transform: translate3d(100%, 2px, 0);
 }
-#object1 {
-    background-color: magenta;
-    width: 200px;
-    height: 150px;
+body {
+    display: flex;
+    flex-direction: column;
 }
 
-#object2 {
-    background-color: lime;
-    width: 80px;
-    height: 80px;
-    transform: translateX(600px) translateY(150px) rotate(20deg) scale(1.5);
+iframe {
+    width: 100%;
+    min-height: 600px;
 }
