@@ -163,7 +163,7 @@ export default class Transformer {
                     this.setCssTransform(elementTransform);
                 };
 
-                if (this.callback) {
+                if (typeof this.callback === 'function') {
                     if (this.callback.call(this, this.elementMatrix)) {
                         updateElementTransform();
                     }

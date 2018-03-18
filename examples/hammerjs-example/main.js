@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     Array.prototype.forEach.call(objects, (obj) => {
         Transformer.hammerize(obj, {
             debug: true
+        }).then((transformer) => {
+            console.log('transformer for', transformer, obj);
         });
     });
 });
