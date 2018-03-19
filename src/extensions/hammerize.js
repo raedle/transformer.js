@@ -30,6 +30,13 @@ const hammerize = (obj, options) => {
 
             const hammerManager = new Hammer.Manager(obj);
 
+            // override destroy function to also destroy hammer manager
+            const _destroy = transformer.destroy;
+            transformer.destroy = function () {
+                hammerManager.destroy();
+                _destroy.call(this);
+            };
+
             // Details on hammer.js can be found here: http://hammerjs.github.io
             hammerManager.add(new Hammer.Pan({ threshold: 0, pointers: 0 }));
             hammerManager.add(new Hammer.Rotate({ threshold: 0 })).recognizeWith(hammerManager.get('pan'));
@@ -163,7 +170,7 @@ const hammerize = (obj, options) => {
             // scale handler
             hammerManager.on("pinchstart pinchmove", (event) => {
                 if (!isEnabled()) return;
-                
+
                 if (!options.pinch) return;
 
                 if (event.type === "pinchstart") {
@@ -244,7 +251,7 @@ const hammerize = (obj, options) => {
                 transformer.reapplyTransforms();
             }, false);
 
-            // return transformer
+            // return modified transformer
             resolve(transformer);
         });
     });
